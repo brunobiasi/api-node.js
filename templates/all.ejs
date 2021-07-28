@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Links</h1>
+        <a href="/add">Adicionar Link</a>
+        <%for(let i = 0; i < links.length; i++){%>
+            <div class="card p-3 mb-3" id="<%=links[i]._id%>">
+                <form class="d-flex align-items-center justify-content-between" method="POST" action="/<%=links[i]._id%>?_method=DELETE">
+                    <div class="d-flex flex-column">
+                        <h2><%=links[i].title%></h2>
+                        <div><%=links[i].description%></div>
+                        <div class="text-muted"><%=links[i].url%></div>
+                        <div class="text-info"><i class="material-icons">bar_chart</i>Clicks: <%=links[i].click%></div>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <input name="id" value="<%=links[i]._id%>" hidden>
+                        <a class="btn btn-info mb-1" href="/edit/<%=links[i]._id%>">Edit</a>
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </div>
+                </form>
+            </div>
+        <%}%>
+    </div>
+</body>
+</html>
